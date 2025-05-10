@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 import static com.arbly.exchangerate.util.AnsiColors.*;
 
@@ -17,15 +18,26 @@ public class ExchangeRateApi {
     private String targetCurrency;
     private final String baseUrl;
 
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
     public ExchangeRateApi() {
-        String apiKey = System.getenv("API_KEY");
+        String apiKey = System.getenv("EXCHANGERATE_API_KEY");
         if (apiKey == null) {
-            var msg = """
-                    +------------------------+
-                    | API_KEY não foi setada |
-                    +------------------------+
-                    """;
-            System.out.println(ANSI_RED + msg + ANSI_RESET);
+            Scanner sc = new Scanner(System.in);
+            System.out.println(ANSI_RED + """
+                    +-----------------------------------------------------------+
+                    | Variável de ambiente EXCHANGERATE_API_KEY não foi setada! |
+                    +-----------------------------------------------------------+
+                    """ + ANSI_RESET);
+            System.out.println("Digite a EXCHANGERATE_API_KEY ou pressione ENTER para sair");
+            System.out.print("EXCHANGERATE_API_KEY: ");
+            apiKey = sc.nextLine();
+        }
+        if(apiKey.isBlank() || !apiKey.matches("[A-Fa-f0-9]+")){
+            if(!apiKey.isBlank())
+                System.out.println(ANSI_RED + "EXCHANGERATE_API_KEY formato inválido." + ANSI_RESET);
             System.exit(0);
         }
         this.baseUrl = "https://v6.exchangerate-api.com/v6/" + apiKey;
@@ -37,16 +49,8 @@ public class ExchangeRateApi {
         return baseCurrency;
     }
 
-    public void setBaseCurrency(String baseCurrency) {
-        this.baseCurrency = baseCurrency;
-    }
-
     public String getTargetCurrency() {
         return targetCurrency;
-    }
-
-    public void setTargetCurrency(String targetCurrency) {
-        this.targetCurrency = targetCurrency;
     }
 
     private ConversionRates updateConversionRates(String baseCurrency) {
@@ -96,8 +100,7 @@ public class ExchangeRateApi {
         return null;
     }
 
-    public Double exchange(Double v, String o, String t) throws IOException, InterruptedException {
-
+    public Double exchange(Double v, String o, String t) {
         var rates = updateConversionRates(o);
         if (rates != null) {
             if (rates.result().equals("success")) {
@@ -125,9 +128,4 @@ public class ExchangeRateApi {
         }else
             return null;
     }
-
-
-
-
-
 }
