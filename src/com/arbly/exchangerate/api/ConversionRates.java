@@ -1,4 +1,4 @@
-package com.arbly.exchangerate.main;
+package com.arbly.exchangerate.api;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Map;
@@ -10,5 +10,4 @@ public record ConversionRates(
         @SerializedName("base_code")
         String baseCode,
         @SerializedName("conversion_rates")
-        Map<String, Double> conversionRatesMap) {
-}
+        Map<String, Double> conversionRatesMap) {}

@@ -1,4 +1,4 @@
-package com.arbly.exchangerate.main;
+package com.arbly.exchangerate.api;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,4 @@
-package com.arbly.exchangerate.main;
+package com.arbly.exchangerate.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -85,7 +85,8 @@ public class ExchangeRateApi {
 
     private String apiRequest(String requestUrl){
         HttpResponse<String> response;
-        try (HttpClient client = HttpClient.newHttpClient()) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(requestUrl))
                     .build();

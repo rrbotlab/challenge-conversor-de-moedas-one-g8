@@ -1,5 +1,7 @@
 package com.arbly.exchangerate.main;
 
+import com.arbly.exchangerate.api.ExchangeRateApi;
+import com.arbly.exchangerate.api.SupportedCodes;
 import com.arbly.exchangerate.util.Cli;
 
 import java.io.IOException;
@@ -10,7 +12,6 @@ import static com.arbly.exchangerate.util.AnsiColors.*;
 
 public class App {
     private SupportedCodes supportedCodes;
-    private ConversionRates conversionRates;
 
     public void run() throws IOException {
         ExchangeRateApi api = new ExchangeRateApi();
@@ -71,7 +72,7 @@ public class App {
         // VALOR COD_BASE
         // VALOR COD_BASE COD_DEST
         if(parseValue(args[0]) != 0){
-            Double result = 0.0;
+            Double result;
             if(args.length == 1) { // VALUE
                 result = api.exchange(Double.valueOf(args[0]), api.getBaseCurrency(), api.getTargetCurrency());
                 printResult(Double.valueOf(args[0]), api.getBaseCurrency(), api.getTargetCurrency(), result);
@@ -104,7 +105,6 @@ public class App {
     }
 
     private void printResult(Double value, String base, String target, Double result){
-
         if (result != null) {
             System.out.printf(ANSI_CYAN + "%.2f %s = %.2f %s%n" + ANSI_RESET, value, base, result, target);
         }else
