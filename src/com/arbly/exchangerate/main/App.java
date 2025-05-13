@@ -124,10 +124,10 @@ public class App {
         var i = 0;
         var j = 1;
         for (Map.Entry<String, String> entry : this.supportedCodes.supportedCodesMap().entrySet()) {
-            System.out.format("%3d | %s | %-40s |%n", j, entry.getKey(), entry.getValue());
+            System.out.format("%3d | %s | %-40s%n", j, entry.getKey(), entry.getValue());
             i++;
             j++;
-            if (i == 25) {
+            if (i == 23) {
                 i = 0;
                 System.out.print("Continuar? (S/n) ");
                 char input = (char) System.in.read();
@@ -137,6 +137,6 @@ public class App {
                     break;
             }
         }
-        System.out.flush();
+        
     }
 }
