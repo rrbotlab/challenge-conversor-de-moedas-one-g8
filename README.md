@@ -1,6 +1,9 @@
-![GitHub license](https://badgen.net/github/license/rrbotlab/challenge-conversor-de-moedas-one-g8)
-![GitHub license](https://badgen.net/github/commits/rrbotlab/challenge-conversor-de-moedas-one-g8)
-![GitHub license](https://badgen.net/github/last-commit/rrbotlab/challenge-conversor-de-moedas-one-g8)
+![GitHub License](https://img.shields.io/github/license/rrbotlab/challenge-conversor-de-moedas-one-g8)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/rrbotlab/challenge-conversor-de-moedas-one-g8)
+![GitHub last commit](https://img.shields.io/github/last-commit/rrbotlab/challenge-conversor-de-moedas-one-g8)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fopen.er-api.com%2Fv6%2Flatest%2FUSD&query=%24.result&label=API%20Status)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fopen.er-api.com%2Fv6%2Flatest%2FUSD&query=%24.rates.BRL&label=USD%20%3E%3E%20BRL)
+
 
 # Challenge Conversor de Moedas
 
